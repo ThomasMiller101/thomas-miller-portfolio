@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Miller | Portfolio</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a; /* Cool slate background */
+            --bg-card: #1e293b; /* Lighter slate for cards */
+            --text-main: #e2e8f0; /* Cool off-white */
+            --text-muted: #94a3b8; /* Muted slate gray */
+            --burgundy: #7a1b38; /* Daring burgundy highlight */
+            --burgundy-light: #9d2449;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation & Header */
+        header {
+            background-color: var(--bg-card);
+            border-bottom: 2px solid var(--burgundy);
+            padding: 20px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-pic-placeholder {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--bg-dark);
+            border: 2px dashed var(--burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .title-section h1 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .title-section h2 {
+            font-size: 1rem;
+            color: var(--burgundy-light);
+            font-weight: 400;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 8px 16px;
+            margin-left: 10px;
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav button:hover, nav button.active {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--burgundy);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--burgundy-light);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Experience Cards */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .card-title-group h3 {
+            font-size: 1.3rem;
+            color: #fff;
+        }
+
+        .card-title-group h4 {
+            font-size: 1rem;
+            color: var(--burgundy-light);
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .card-title-group .date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            display: block;
+        }
+
+        .logo-placeholder {
+            width: 100px;
+            height: 50px;
+            background-color: var(--bg-dark);
+            border: 1px dashed var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Content Styling */
+        .detailed-content h5 {
+            color: #fff;
+            margin-top: 25px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            border-left: 3px solid var(--burgundy);
+            padding-left: 10px;
+        }
+        
+        .detailed-content p {
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .detailed-content ul {
+            list-style-type: square;
+            padding-left: 20px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .detailed-content li {
+            margin-bottom: 10px;
+        }
+
+        .short-content ul {
+            list-style-type: square;
+            padding-left: 20px;
+            color: var(--text-main);
+        }
+
+        .short-content li {
+            margin-bottom: 10px;
+        }
+
+        .references {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--bg-dark);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .references p {
+            margin-bottom: 5px;
+        }
+
+        /* Image Gallery Placeholders */
+        .gallery-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .img-placeholder {
+            flex: 1;
+            min-width: 200px;
+            height: 200px;
+            background-color: var(--bg-dark);
+            border: 1px dashed var(--burgundy);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 10px;
+        }
+
+        .img-large {
+            width: 100%;
+            height: 300px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: var(--bg-dark);
+            border: 1px dashed var(--burgundy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="profile-section">
+                <div class="profile-pic-placeholder">Profile<br>Image</div>
+                <div class="title-section">
+                    <h1>Thomas Miller</h1>
+                    <h2>Mechanical Engineer | Technology & Research</h2>
+                </div>
+            </div>
+            <nav>
+                <button id="btn-engineering" class="active" onclick="switchPage('engineering')">Engineering Research</button>
+                <button id="btn-experience" onclick="switchPage('experience')">Experiences & Pursuits</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- PAGE 1: ENGINEERING & RESEARCH -->
+        <div id="page-engineering" class="page active">
+            <h2 class="section-title">Core Research & Engineering</h2>
+
+            <!-- SURE Program (Highly Detailed 7-Section Layout) -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <h3>Undergraduate Researcher</h3>
+                        <h4>CSU Scott 'SURE' Program</h4>
+                        <span class="date">January 2025 - June 2025</span>
+                    </div>
+                    <div class="logo-placeholder">CSU Logo</div>
+                </div>
+                <div class="detailed-content">
+                    
+                    <h5>1. Introduction</h5>
+                    <p>Block copolymers can self-assemble into a variety of nanostructures, making them highly valuable for applications in various fields such as nanotechnology, materials science, and drug delivery. Understanding how to control their self-assembly and morphological transitions is crucial for designing these materials with tailored properties.</p>
+                    <p><strong>My specific role</strong> in the project was to determine the ideal simulation box size for the bulk period of the pattern to appear without interruptions or deformities to the expected pattern.</p>
+                    
+                    <div class="img-large">Ideal pattern [ 8.8.4 ]<br>(Insert Image)</div>
+
+                    <h5>2. Methods</h5>
+                    <p>In this project, we use the automated workflow developed in our group to perform equilibrium molecular dynamics (MD) simulations of ABC mikto-arm star triblock terpolymers using a coarse-grained (i.e., the dissipative particle dynamics chain, DPDC) model [1], specifically for the purpose of finding the bulk period of the [8.8.4] tiling pattern.</p>
+                    <p>The workflow uses an Excel worksheet to input the simulation parameters, performs simulations in parallel using HOOMD-blue, calculates various quantities (e.g., the mean-square chain radius of gyration, interaction energy, pressure tensor, and order parameter), plots the data, and finally summarizes important simulation results back into the worksheet. The bulk period is found when the difference among the diagonal elements of the pressure tensor as the change in D vanishes. [2]</p>
+
+                    <h5>3. Results</h5>
+                    <p>Each data point in the figure below corresponds to a simulation case with a different number of ABC stars (each having 8 A-segments, 8 B-segments, and 4 C-segments connected at a common joint segment) in the simulation box at constant segment number density, thus a different cubic simulation box length L, where s denotes the range of the non-bonded pair potential between segments. We see that the change in D vanishes around L/s=15.66; that is, the distance between two nearest red (A-) or blue (B-)cylinders in the bulk, L0, is 7.83s.</p>
+                    <p>As the change in D vanishes, the periodic boundary conditions imposed on the simulation box are commensurate with the bulk periodicity of [8.8.4] and the diagonal elements of the pressure tensor are equal, meaning that the pressure is the same in all directions and the structure is not deformed. [2] This has not been done in previous simulations of [8.8.4].</p>
+
+                    <div class="gallery-container">
+                        <div class="img-placeholder">Result Image 1<br>(Insert Side-by-Side Image)</div>
+                        <div class="img-placeholder">Result Image 2<br>(Insert Side-by-Side Image)</div>
+                    </div>
+
+                    <h5>4. Discussion</h5>
+                    <p>The primary goal of this project is to investigate the structures and thermodynamic properties of the [8.8.4] tiling patterns formed by ABC stars. We also compared simulation results with predictions from the polymer self-consistent field (SCF) theory for the same model system, which gives L0=8.50s thus overestimating it. This allowed us to unambiguously quantify the consequences of approximations used in the theory and gave us better insight into the self-assembled structures of ABC stars.</p>
+
+                    <h5>5. Conclusion</h5>
+                    <ul>
+                        <li>We have used an automated workflow for equilibrium molecular dynamics (MD) simulations of the DPDC model to study the [8.8.4] tiling pattern formed by ABC stars.</li>
+                        <li>We have determined the bulk period of [8.8.4] tiling pattern.</li>
+                        <li>We have found that the widely used SCF theory overestimates the bulk period of [8.8.4].</li>
+                        <li>Similar work on the intriguing (3.3.4.3.4) tiling pattern, which has rarely been studied in the literature, is currently underway.</li>
+                    </ul>
+
+                    <h5>6. Applying What I’ve Learned</h5>
+                    <ul>
+                        <li>Developed proficiency in conducting computer simulations and analyzing generated data to study the behavior of simulated particles. This experience enhanced my ability to interpret complex structures formed by polymers, strengthening my foundational knowledge for future research.</li>
+                        <li>By mastering these computational techniques, I gained deeper insights into the underlying processes, which will enable me to approach advanced research with greater precision and analytical rigor.</li>
+                        <li>Gained early exposure to university-level research, providing hands-on experience in academic research methodologies, data analysis, and scientific collaboration. Through this involvement, I developed a strong understanding of research workflows, from hypothesis formulation to computational design and publication processes.</li>
+                        <li>Computational methods like simulations and high-throughput analysis accelerate discovery, enabling faster hypothesis testing than traditional experiments. This experience revealed the power of data-driven research, deepening my interest in modern scientific tools.</li>
+                    </ul>
+
+                    <h5>7. References & Acknowledgements</h5>
+                    <div class="references">
+                        <p><strong>Mentors and Peers:</strong> Akshay Malik, Vugar Hajizada, and Qiang (David) Wang</p>
+                        <p><strong>Institution:</strong> Department of Chemical and Biological Engineering, Colorado State University, Fort Collins, CO</p>
+                        <p>This work was completed during the Spring 2025 Scott Undergraduate Research Experience (SURE) program, which is generously funded by the Suzanne and Walter Scott Foundation and the Walter Scott, Jr. College of Engineering at Colorado State University.</p>
+                        <br>
+                        <p><strong>Sources:</strong></p>
+                        <p>[1] Sandhu, P.; Zong, J.; Yang, D.; Wang, Q. On the Comparisons Between Dissipative Particle Dynamics Simulations and Self-consistent Field Calculations of Diblock Copolymer Microphase Separation. J. Chem. Phys. 2013, 138, 194904, DOI: 10.1063/1.4804608</p>
+                        <p>[2] Feng, Y.; Li, B.; Wang, Q. Finding the Bulk Periodicity of Lamellar and Cylindrical Structures Using the Pressure Tensor. Soft Matter 2022, 18, 4923-4929, DOI: 10.1039/D2SM00294A</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Marvel Fusion (Highly Detailed) -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <h3>Mechanical Design Engineering Intern</h3>
+                        <h4>Marvel Fusion GmbH</h4>
+                        <span class="date">Summer 2026</span>
+                    </div>
+                    <div class="logo-placeholder">Marvel Logo</div>
+                </div>
+                <div class="detailed-content">
+                    <h5>Project Scope & Objective</h5>
+                    <p>Addressed the lack of handling solutions for meter-class optics by leading the full-cycle R&D of a custom modular mount, taking the product from initial concept and simulation through to complete manufacturing.</p>
+                    
+                    <h5>Engineering Implementation</h5>
+                    <p>Designed and manufactured the custom optic handling mount from scratch utilizing advanced CAD and structural simulation. Mitigated damage risk for 100-pound, $100,000+ optics during transport and critical pre-installation servicing.</p>
+                    
+                    <h5>Impact & Deliverables</h5>
+                    <p>Managed the entire product lifecycle, delivering an asset that standardized procedures across the facility. Shared the hardware development outcome by presenting structural data and manufacturing workflows to fusion energy experts at a Washington, D.C. symposium.</p>
+                </div>
+                <div class="gallery-container">
+                    <div class="img-placeholder">Project CAD Render<br>(Insert Image)</div>
+                    <div class="img-placeholder">Manufacturing Process<br>(Insert Image)</div>
+                    <div class="img-placeholder">Final Optic Mount<br>(Insert Image)</div>
+                    <div class="img-placeholder">Symposium Presentation<br>(Insert Image)</div>
+                </div>
+            </div>
+
+            <!-- CSU Learning Assistant (Short & Sweet) -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <h3>Learning Assistant and Tutor</h3>
+                        <h4>Colorado State University</h4>
+                        <span class="date">Spring 2026 - Present</span>
+                    </div>
+                    <div class="logo-placeholder">CSU Logo</div>
+                </div>
+                <div class="short-content">
+                    <ul>
+                        <li>Guide first-year engineering students through multidisciplinary projects, microcontroller integration, and MATLAB applications.</li>
+                        <li>Foster cohesive team dynamics among 60 students per semester from diverse backgrounds to mitigate project conflicts.</li>
+                        <li>Provide targeted tutoring across core STEM coursework including Calculus, Differential Equations, Statics, and Dynamics.</li>
+                    </ul>
+                </div>
+                <div class="gallery-container">
+                    <div class="img-placeholder">Lab Mentorship<br>(Insert Image)</div>
+                    <div class="img-placeholder">Student Project Demo<br>(Insert Image)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: EXPERIENCES & PURSUITS -->
+        <div id="page-experience" class="page">
+            <h2 class="section-title">Global Experience & Interests</h2>
+
+            <!-- Lockheed Martin (Short & Sweet) -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <h3>Aerospace Engineer Intern</h3>
+                        <h4>Lockheed Martin</h4>
+                        <span class="date">Fall 2023</span>
+                    </div>
+                    <div class="logo-placeholder">LM Logo</div>
+                </div>
+                <div class="short-content">
+                    <ul>
+                        <li>Served as team leader responsible for project management and finalizing deliverables for a semester-long aerospace project.</li>
+                        <li>Researched satellite operations and presented a finalized research proposal to a board of Lockheed Martin Engineers.</li>
+                        <li>Developed strict mission parameters, project timelines, and comprehensive budget reports.</li>
+                    </ul>
+                </div>
+                <div class="img-large">
+                    Lockheed Martin Team Photo<br>(image_e5243f.jpg - Top Left)
+                </div>
+            </div>
+
+            <!-- Study Abroad (Short & Sweet) -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <h3>Mechanical Engineering Study Abroad</h3>
+                        <h4>Berlin & Dresden, Germany</h4>
+                        <span class="date">Summer 2024</span>
+                    </div>
+                    <div class="logo-placeholder">Program Logo</div>
+                </div>
+                <div class="short-content">
+                    <ul>
+                        <li>Studied introductory mechanical engineering and engineering ethics leading into first year of university.</li>
+                        <li>Developed valuable international leadership skills directly related to large-scale engineering operations (e.g., Volkswagen).</li>
+                    </ul>
+                </div>
+                <div class="gallery-container">
+                    <div class="img-placeholder">Volkswagen Facility<br>(image_e5243f.jpg - Bottom Right)</div>
+                    <div class="img-placeholder">Dresden Architecture<br>(image_e5243f.jpg - Bottom Left)</div>
+                    <div class="img-placeholder">Group Photo<br>(image_e5243f.jpg - Center)</div>
+                </div>
+            </div>
+
+            <!-- Personal Pursuits -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <h3>Technical & Creative Pursuits</h3>
+                        <h4>Personal Projects & Hobbies</h4>
+                    </div>
+                </div>
+                <div class="short-content">
+                    <ul>
+                        <li><strong>Advanced Mechatronics:</strong> Designing custom FPV micro-drones utilizing ESP32/STM32 microcontrollers and multi-material 3D printing (TPU, PCTG).</li>
+                        <li><strong>Visual Arts & Music:</strong> Active practice in acrylic painting, ceramics, graphite sketching, and playing the piano.</li>
+                        <li><strong>Culinary Arts:</strong> Exploring complex culinary techniques including fresh pasta making and slow-cooked dishes.</li>
+                    </ul>
+                </div>
+                <div class="gallery-container">
+                    <div class="img-placeholder">Micro-Drone Build<br>(Insert Image)</div>
+                    <div class="img-placeholder">Artwork/Ceramics<br>(Insert Image)</div>
+                    <div class="img-placeholder">Culinary Dish<br>(Insert Image)</div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function switchPage(pageId) {
+            document.getElementById('btn-engineering').classList.remove('active');
+            document.getElementById('btn-experience').classList.remove('active');
+            document.getElementById('btn-' + pageId).classList.add('active');
+
+            document.getElementById('page-engineering').classList.remove('active');
+            document.getElementById('page-experience').classList.remove('active');
+            document.getElementById('page-' + pageId).classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
